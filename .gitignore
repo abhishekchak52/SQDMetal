@@ -162,3 +162,14 @@ cython_debug/
 outputFiles/
 /docs/User/WorkedExamples/GMSH_eigen_test
 docs/User/WorkedExamples/temp.sh
+
+# pixi environments
+.pixi
+*.egg-info
+
+# apptainer
+*.sif
+*.def
+
+# MacOS
+.DS_Store
