@@ -15,32 +15,28 @@ There are two classes of documentation provided for this stack:
 
 ## Installation instructions
 
-The following installation instructions automatically installs Qiskit-Metal along with SQDMetal. First choose a folder to house SQDMetal (idea is to create an editable folder such that the code can be modified and pushed without upsetting the pip package manager). Once navigating to this folder, run Anaconda prompt and run the following command:
+[![Pixi Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json)](https://pixi.sh)
+
+We use Pixi for dependency management. Pixi fits unto existing `conda`-based workflows but leverages the `rattler` crate, a highly-performant spiritual successor to `mamba` written in Rust. 
+
+The following instructions will set up the development environment, including Qiskit Metal and Jupyter. The commands assume a POSIX terminal, but the equivalent Windows CMD/PowerShell commands should be substituted appropriately.
+
+
 
 ```bash
-cd C:/Users/....../myFolder/
-git clone https://github.com/sqdlab/SQDMetal.git
-```
+# First, clone this repository
+git clone https://github.com/sqdlab/SQDMetal.git 
 
-To run the installation faster, first install `mamba`:
+# Change directory to project root
+cd ./SQDMetal
+
+# Install the default environment
+pixi install 
+```
+This will install Qiskit Metal, SQDMetal, Jupyter and some other dependencies into the `default` virtual environment. To open a shell prompt inside this environment (the equivalent of `conda activate ...`), run the following command in a terminal window:
 
 ```bash
-conda install -n base conda-forge::mamba
+pixi shell
 ```
-
-Now run (changing `sqdmetal_env` to any other desired name for the virtual environment):
-
-```bash
-mamba env create -n sqdmetal_env -f SQDMetal/env_windows.yml
-```
-
-Now activate the environment and install Qiskit-Metal:
-
-```bash
-activate sqdmetal_env
-pip install -e SQDMetal
-```
-
-This should install Qiskit-Metal and SQDMetal.
 
 
