@@ -120,7 +120,7 @@ class PALACE_Model:
             # Run the sysctl command to check the native architecture
             result = subprocess.run(["sysctl", "-n", "machdep.cpu.brand_string"], capture_output=True, text=True, check=True)
             return "M" in result.stdout  # M is for Apple M1/M2 chips
-        except subprocess.CalledProcessError as e:
+        except (subprocess.CalledProcessError, FileNotFoundError) as e:
             # print(f"Error checking native architecture: {e}")
             return False
 
