@@ -1918,7 +1918,7 @@ wheels = [
 [[package]]
 name = "qiskit-metal"
 version = "0.5.0"
-source = { git = "https://github.com/abhishekchak52/qiskit-metal#06a9bd9f6f9e9024dd21fa528c7dd8472fb50b94" }
+source = { editable = "../qiskit-metal" }
 dependencies = [
     { name = "addict" },
     { name = "cython" },
@@ -1940,6 +1940,30 @@ dependencies = [
     { name = "scipy" },
     { name = "scqubits" },
     { name = "shapely" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "addict", specifier = ">=2.4.0" },
+    { name = "cython", specifier = "<3.0.0" },
+    { name = "descartes", specifier = ">=1.1.0" },
+    { name = "gdstk", specifier = ">=0.9" },
+    { name = "geopandas", specifier = ">=0.12.2" },
+    { name = "gmsh", specifier = "~=4.11.1" },
+    { name = "matplotlib", specifier = ">=3.7.0" },
+    { name = "numpy", specifier = ">=1.24.2,<2" },
+    { name = "pandas", specifier = ">=1.5.3" },
+    { name = "pint", specifier = "~=0.20.1" },
+    { name = "pyaedt", specifier = ">=0.6.46,<0.10.0" },
+    { name = "pyepr-quantum", specifier = ">=0.9.0" },
+    { name = "pygments", specifier = ">=2.14.0" },
+    { name = "pyside6", specifier = ">=6.9.0" },
+    { name = "pyyaml", specifier = ">=6.0" },
+    { name = "qdarkstyle", specifier = "~=3.1" },
+    { name = "qutip", specifier = ">=4.7.1" },
+    { name = "scipy", specifier = ">=1.10.0" },
+    { name = "scqubits", specifier = ">=3.1.0,<=3.4.0" },
+    { name = "shapely", specifier = "~=2.0.1" },
 ]
 
 [[package]]
@@ -2489,7 +2513,7 @@ dev = [
 requires-dist = [
     { name = "mph", specifier = ">=1.2.4" },
     { name = "pyvista", specifier = ">=0.45.2" },
-    { name = "qiskit-metal", git = "https://github.com/abhishekchak52/qiskit-metal" },
+    { name = "qiskit-metal", editable = "../qiskit-metal" },
 ]
 
 [package.metadata.requires-dev]
