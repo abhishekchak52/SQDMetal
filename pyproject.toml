@@ -23,7 +23,8 @@ build-backend = "hatchling.build"
 requires      = [ "hatchling" ]
 
 [tool.uv.sources]
-qiskit-metal = { git = "https://github.com/abhishekchak52/qiskit-metal" }
+# qiskit-metal = { git = "https://github.com/abhishekchak52/qiskit-metal", branch = "update-scqubits-3-4-0" }
+qiskit-metal = { path = "../qiskit-metal", editable = true }
 
 [dependency-groups]
 dev = [
