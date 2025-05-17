@@ -24,3 +24,8 @@ requires      = [ "hatchling" ]
 
 [tool.uv.sources]
 qiskit-metal = { git = "https://github.com/abhishekchak52/qiskit-metal" }
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+]
