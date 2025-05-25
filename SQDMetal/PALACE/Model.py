@@ -204,11 +204,15 @@ class PALACE_Model:
             raise ValueError(
                 f"Invalid container executable name: {container_executable_name}. Must be 'apptainer' or 'singularity'."
             )
+        
+        container_executable_path = shutil.which(container_executable_name)
+        if container_executable_path is None:
+            raise FileNotFoundError(f"Container executable {container_executable_name} not found in PATH.")
 
         if "~" in self.palace_dir:
-            container_path = Path(self.palace_dir).expanduser().resolve()
+            container_path = Path(self.palace_dir).expanduser()
         else:
-            container_path = Path(self.palace_dir).resolve()
+            container_path = Path(self.palace_dir)
 
         config_file = Path(self._sim_config).resolve()
         output_data_dir = Path(self._output_data_dir).resolve()
@@ -223,7 +227,7 @@ class PALACE_Model:
         # Prepare the full command to execute using apptainer
         # Use the resolved container path and pass the config file name as an argument
         full_command = [
-            container_executable_name,
+            container_executable_path,
             "run",
             str(container_path),
             "-np",
@@ -253,14 +257,18 @@ class PALACE_Model:
                 # and checks the return code (raises CalledProcessError for non-zero exit)
                 # Any remaining output will have been read by the iter loops above
 
-        except Exception as e:
-            print(f"Error: {e}")
-            raise
-        finally:
             log_location = output_data_dir / "out.log"
             with open(log_location, "w") as log_file:
                 log_file.writelines(log_output)
             print(f"Output saved to {log_location}")
+
+            shutil.copy(self._sim_config, self._output_data_dir + "/config.json")
+
+            return self.retrieve_data()
+        
+        except Exception as e:
+            print(f"Error: {e}")    
+            raise
 
     def run(self, **kwargs):
         """
@@ -272,6 +280,7 @@ class PALACE_Model:
             self.run_container(**kwargs)
         else:
             self.run_local(**kwargs)
+
 
     def run_local(self, **kwargs):
         """
